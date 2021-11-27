@@ -1,8 +1,9 @@
 import torch
 import torchvision.transforms as T
 import torchvision.transforms.functional as TF
+from numba import jit, cuda
 
-
+# @jit(target="cuda")
 def preprocess(image, res=None):
     """
     Resizes, normalizes, and converts image to float32.
@@ -19,7 +20,7 @@ def preprocess(image, res=None):
 
     return image
 
-
+# @jit(target="cuda")
 def augment(image, rois):
     """
     Applies rotation, color jitter, and a flip.
